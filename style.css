@@ -8,7 +8,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* topp av siden */
     min-height: 100vh;
     text-align: center;
 }
@@ -18,12 +17,12 @@ h1 {
     margin-bottom: 30px;
 }
 
-/* Container for hele pall + resten */
+/* Container for topp 3 og resten */
 #pall-container {
-    display: grid;
-    grid-template-rows: auto auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 40px;
-    justify-items: center;
 }
 
 /* Top 3 pall */
@@ -32,14 +31,14 @@ h1 {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     justify-items: center;
-    align-items: end; /* topp 3 står på pall */
+    align-items: end;
 }
 
-/* Resten */
+/* Resten av ikonene */
 .rest {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 120px));
-    gap: 15px;
+    grid-template-columns: repeat(5, 1fr); /* maks 5 per rad */
+    gap: 20px;
     justify-items: center;
 }
 
@@ -93,11 +92,19 @@ h1 {
 
 /* Mobiltilpasning */
 @media(max-width:600px){
-    .icon-box {width: 90px; height: 130px; padding: 5px;}
-    .top3 .icon-box:nth-child(1) {height: 150px;}
-    .top3 .icon-box:nth-child(2) {height: 140px;}
-    .top3 .icon-box:nth-child(3) {height: 130px;}
-    .icon-box img {width: 45px; height: 45px;}
-    .icon-box .name {font-size: 12px;}
-    .icon-box .counter {font-size: 11px;}
+    .top3 {
+        grid-template-columns: repeat(1, 1fr); /* stack topp 3 på mobil */
+        gap: 15px;
+    }
+    .rest {
+        grid-template-columns: repeat(3, 1fr); /* maks 3 per rad på mobil */
+        gap: 15px;
+    }
+    .icon-box { width: 90px; height: 130px; padding: 5px; }
+    .top3 .icon-box:nth-child(1) { height: 150px; }
+    .top3 .icon-box:nth-child(2) { height: 140px; }
+    .top3 .icon-box:nth-child(3) { height: 130px; }
+    .icon-box img { width: 45px; height: 45px; }
+    .icon-box .name { font-size: 12px; }
+    .icon-box .counter { font-size: 11px; }
 }
