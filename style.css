@@ -1,89 +1,89 @@
-/* Bruk Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-body {
-    font-family: 'Roboto', sans-serif;
-    background: #f0f2f5;
-    margin: 0;
-    padding: 20px;
+body{
+    font-family:'Roboto',sans-serif;
+    background:#f0f2f5;
+    margin:0;
+    padding:20px;
+    text-align:center;
 }
 
-/* Container for ikonene */
-#icons-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-    justify-items: center;
+#pall-container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:30px;
 }
 
-/* Hver ikonboks */
-.icon-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    background: linear-gradient(135deg, #ffffff, #e0e4ff);
-    border-radius: 15px;
-    padding: 15px;
-    width: 150px;
-    height: 200px; /* Alle boksene har samme størrelse */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+/* Top 3 */
+.top3{
+    display:flex;
+    gap:20px;
+    align-items:flex-end;
+}
+
+/* Resten */
+.rest{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    justify-content:center;
+}
+
+/* Boksene */
+.icon-box{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:space-between;
+    width:120px;
+    height:160px;
+    padding:10px;
+    border-radius:15px;
+    background: linear-gradient(135deg,#ffecd2,#fcb69f);
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    cursor:pointer;
     transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
 }
 
-/* Hover-effekt */
-.icon-box:hover {
+.icon-box:hover{
     transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
 }
 
-/* Ikonet */
-.icon-box img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    margin-bottom: 10px;
+/* Større topp 3 */
+.top3 .icon-box:nth-child(1){height:200px; background:linear-gradient(135deg,#ffd700,#ffec8b);}
+.top3 .icon-box:nth-child(2){height:180px; background:linear-gradient(135deg,#c0c0c0,#e0e0e0);}
+.top3 .icon-box:nth-child(3){height:170px; background:linear-gradient(135deg,#cd7f32,#f0c27b);}
+
+.icon-box img{
+    width:60px;
+    height:60px;
+    object-fit:contain;
+    margin-bottom:10px;
 }
 
-/* Navn under ikonet */
-.icon-box .name {
-    font-weight: 700;
-    font-size: 16px;
-    text-align: center;
-    margin-bottom: 8px;
-    color: #333;
+.icon-box .name{
+    font-weight:700;
+    font-size:14px;
+    margin-bottom:5px;
+    color:#333;
 }
 
-/* Teller / statistikk */
-.icon-box .counter {
-    font-size: 14px;
-    font-weight: 500;
-    text-align: center;
-    background: #dce4ff;
-    color: #1a1a1a;
-    padding: 4px 8px;
-    border-radius: 8px;
-    width: fit-content;
-    box-shadow: inset 0 -1px 3px rgba(0,0,0,0.1);
+.icon-box .counter{
+    font-weight:500;
+    font-size:13px;
+    background:#fff3;
+    padding:4px 8px;
+    border-radius:8px;
 }
 
-/* Mobiltilpasning */
-@media (max-width: 600px) {
-    .icon-box {
-        width: 120px;
-        height: 180px;
-        padding: 10px;
-    }
-    .icon-box img {
-        width: 60px;
-        height: 60px;
-    }
-    .icon-box .name {
-        font-size: 14px;
-    }
-    .icon-box .counter {
-        font-size: 12px;
-        padding: 3px 6px;
-    }
+@media(max-width:600px){
+    .icon-box{width:90px;height:130px;padding:5px;}
+    .top3 .icon-box:nth-child(1){height:150px;}
+    .top3 .icon-box:nth-child(2){height:140px;}
+    .top3 .icon-box:nth-child(3){height:130px;}
+    .icon-box img{width:45px;height:45px;}
+    .icon-box .name{font-size:12px;}
+    .icon-box .counter{font-size:11px;}
 }
