@@ -1,89 +1,103 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-body{
-    font-family:'Roboto',sans-serif;
-    background:#f0f2f5;
-    margin:0;
-    padding:20px;
-    text-align:center;
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #f0f2f5;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* topp av siden */
+    min-height: 100vh;
+    text-align: center;
 }
 
-#pall-container{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:30px;
+h1 {
+    color: #333;
+    margin-bottom: 30px;
 }
 
-/* Top 3 */
-.top3{
-    display:flex;
-    gap:20px;
-    align-items:flex-end;
+/* Container for hele pall + resten */
+#pall-container {
+    display: grid;
+    grid-template-rows: auto auto;
+    gap: 40px;
+    justify-items: center;
+}
+
+/* Top 3 pall */
+.top3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-items: center;
+    align-items: end; /* topp 3 står på pall */
 }
 
 /* Resten */
-.rest{
-    display:flex;
-    flex-wrap:wrap;
-    gap:15px;
-    justify-content:center;
+.rest {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 120px));
+    gap: 15px;
+    justify-items: center;
 }
 
 /* Boksene */
-.icon-box{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:space-between;
-    width:120px;
-    height:160px;
-    padding:10px;
-    border-radius:15px;
-    background: linear-gradient(135deg,#ffecd2,#fcb69f);
-    box-shadow:0 4px 12px rgba(0,0,0,0.1);
-    cursor:pointer;
+.icon-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 120px;
+    height: 160px;
+    padding: 10px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #ffecd2, #fcb69f);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.icon-box:hover{
+.icon-box:hover {
     transform: translateY(-5px);
-    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
 /* Større topp 3 */
-.top3 .icon-box:nth-child(1){height:200px; background:linear-gradient(135deg,#ffd700,#ffec8b);}
-.top3 .icon-box:nth-child(2){height:180px; background:linear-gradient(135deg,#c0c0c0,#e0e0e0);}
-.top3 .icon-box:nth-child(3){height:170px; background:linear-gradient(135deg,#cd7f32,#f0c27b);}
+.top3 .icon-box:nth-child(1) { height: 200px; background: linear-gradient(135deg,#ffd700,#ffec8b);}
+.top3 .icon-box:nth-child(2) { height: 180px; background: linear-gradient(135deg,#c0c0c0,#e0e0e0);}
+.top3 .icon-box:nth-child(3) { height: 170px; background: linear-gradient(135deg,#cd7f32,#f0c27b);}
 
-.icon-box img{
-    width:60px;
-    height:60px;
-    object-fit:contain;
-    margin-bottom:10px;
+.icon-box img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 10px;
 }
 
-.icon-box .name{
-    font-weight:700;
-    font-size:14px;
-    margin-bottom:5px;
-    color:#333;
+.icon-box .name {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
 }
 
-.icon-box .counter{
-    font-weight:500;
-    font-size:13px;
-    background:#fff3;
-    padding:4px 8px;
-    border-radius:8px;
+.icon-box .counter {
+    font-weight: 500;
+    font-size: 13px;
+    background: #fff3;
+    padding: 4px 8px;
+    border-radius: 8px;
 }
 
+/* Mobiltilpasning */
 @media(max-width:600px){
-    .icon-box{width:90px;height:130px;padding:5px;}
-    .top3 .icon-box:nth-child(1){height:150px;}
-    .top3 .icon-box:nth-child(2){height:140px;}
-    .top3 .icon-box:nth-child(3){height:130px;}
-    .icon-box img{width:45px;height:45px;}
-    .icon-box .name{font-size:12px;}
-    .icon-box .counter{font-size:11px;}
+    .icon-box {width: 90px; height: 130px; padding: 5px;}
+    .top3 .icon-box:nth-child(1) {height: 150px;}
+    .top3 .icon-box:nth-child(2) {height: 140px;}
+    .top3 .icon-box:nth-child(3) {height: 130px;}
+    .icon-box img {width: 45px; height: 45px;}
+    .icon-box .name {font-size: 12px;}
+    .icon-box .counter {font-size: 11px;}
 }
