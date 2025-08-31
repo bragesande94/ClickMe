@@ -17,32 +17,15 @@ h1 {
     margin-bottom: 30px;
 }
 
-/* Container for topp 3 og resten */
-#pall-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-}
-
-/* Top 3 pall */
-.top3 {
+#icons-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 20px;
     justify-items: center;
-    align-items: end;
+    max-width: 650px;
+    margin: 0 auto;
 }
 
-/* Resten av ikonene */
-.rest {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* maks 5 per rad */
-    gap: 20px;
-    justify-items: center;
-}
-
-/* Boksene */
 .icon-box {
     display: flex;
     flex-direction: column;
@@ -52,21 +35,16 @@ h1 {
     height: 160px;
     padding: 10px;
     border-radius: 15px;
-    background: linear-gradient(135deg, #ffecd2, #fcb69f);
+    background: linear-gradient(135deg,#ffecd2,#fcb69f);
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, height 0.2s;
 }
 
 .icon-box:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
-
-/* Større topp 3 */
-.top3 .icon-box:nth-child(1) { height: 200px; background: linear-gradient(135deg,#ffd700,#ffec8b);}
-.top3 .icon-box:nth-child(2) { height: 180px; background: linear-gradient(135deg,#c0c0c0,#e0e0e0);}
-.top3 .icon-box:nth-child(3) { height: 170px; background: linear-gradient(135deg,#cd7f32,#f0c27b);}
 
 .icon-box img {
     width: 60px;
@@ -92,18 +70,12 @@ h1 {
 
 /* Mobiltilpasning */
 @media(max-width:600px){
-    .top3 {
-        grid-template-columns: repeat(1, 1fr); /* stack topp 3 på mobil */
-        gap: 15px;
-    }
-    .rest {
-        grid-template-columns: repeat(3, 1fr); /* maks 3 per rad på mobil */
+    #icons-container {
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+        max-width: 100%;
         gap: 15px;
     }
     .icon-box { width: 90px; height: 130px; padding: 5px; }
-    .top3 .icon-box:nth-child(1) { height: 150px; }
-    .top3 .icon-box:nth-child(2) { height: 140px; }
-    .top3 .icon-box:nth-child(3) { height: 130px; }
     .icon-box img { width: 45px; height: 45px; }
     .icon-box .name { font-size: 12px; }
     .icon-box .counter { font-size: 11px; }

@@ -3,96 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Klikk-teller med moderne design</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts (Roboto) -->
+    <title>ClickMan – Interaktiv pall</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1 style="text-align:center; color:#333;">ClickMan – Klikk-teller</h1>
+    <h1>ClickMan – Klikk-teller</h1>
 
     <div id="icons-container">
-        <div class="icon-box" data-id="1">
-            <img src="ikon1.png" alt="Ikon 1">
-            <div class="name">Arbeiderpartiet</div>
-            <div class="counter">Antall klikk: 0</div>
-        </div>
-        <div class="icon-box" data-id="2">
-            <img src="ikon2.png" alt="Ikon 2">
-            <div class="name">Høyre</div>
-            <div class="counter">Antall klikk: 0</div>
-        </div>
-        <div class="icon-box" data-id="3">
-            <img src="ikon3.png" alt="Ikon 3">
-            <div class="name">Senterpartiet</div>
-            <div class="counter">Antall klikk: 0</div>
-        </div>
-        <div class="icon-box" data-id="4">
-            <img src="ikon4.png" alt="Ikon 4">
-            <div class="name">Fremskrittspartiet</div>
-            <div class="counter">Antall klikk: 0</div>
-        </div>
-        <div class="icon-box" data-id="5">
-            <img src="ikon5.png" alt="Ikon 5">
-            <div class="name">Venstre</div>
-            <div class="counter">Antall klikk: 0</div>
-        </div>
-        <div class="icon-box" data-id="6">
-            <img src="ikon6.png" alt="Ikon 6">
-            <div class="name">Kristelig Folkeparti</div>
-            <div class="counter">Antall klikk: 0</div>
-        </div>
-        <div class="icon-box" data-id="7">
-            <img src="ikon7.png" alt="Ikon 7">
-            <div class="name">Sosialistisk Venstreparti</div>
-            <div class="counter">Antall klikk: 0</div>
-        </div>
-        <div class="icon-box" data-id="8">
-            <img src="ikon8.png" alt="Ikon 8">
-            <div class="name">Miljøpartiet De Grønne</div>
-            <div class="counter">Antall klikk: 0</div>
-        </div>
-        <div class="icon-box" data-id="9">
-            <img src="ikon9.png" alt="Ikon 9">
-            <div class="name">Rødt</div>
-            <div class="counter">Antall klikk: 0</div>
-        </div>
+        <div class="icon-box" data-id="1"><img src="ikon1.png" alt="Ikon 1"><div class="name">Parti 1</div><div class="counter">0</div></div>
+        <div class="icon-box" data-id="2"><img src="ikon2.png" alt="Ikon 2"><div class="name">Parti 2</div><div class="counter">0</div></div>
+        <div class="icon-box" data-id="3"><img src="ikon3.png" alt="Ikon 3"><div class="name">Parti 3</div><div class="counter">0</div></div>
+        <div class="icon-box" data-id="4"><img src="ikon4.png" alt="Ikon 4"><div class="name">Parti 4</div><div class="counter">0</div></div>
+        <div class="icon-box" data-id="5"><img src="ikon5.png" alt="Ikon 5"><div class="name">Parti 5</div><div class="counter">0</div></div>
+        <div class="icon-box" data-id="6"><img src="ikon6.png" alt="Ikon 6"><div class="name">Parti 6</div><div class="counter">0</div></div>
+        <div class="icon-box" data-id="7"><img src="ikon7.png" alt="Ikon 7"><div class="name">Parti 7</div><div class="counter">0</div></div>
+        <div class="icon-box" data-id="8"><img src="ikon8.png" alt="Ikon 8"><div class="name">Parti 8</div><div class="counter">0</div></div>
+        <div class="icon-box" data-id="9"><img src="ikon9.png" alt="Ikon 9"><div class="name">Parti 9</div><div class="counter">0</div></div>
     </div>
 
     <script>
         const container = document.getElementById('icons-container');
         const icons = Array.from(document.querySelectorAll('.icon-box'));
 
-        // Init counters from localStorage (midlertidig, senere kan backend brukes)
+        // Init clicks
         icons.forEach(icon => {
             const id = icon.dataset.id;
-            let clicks = localStorage.getItem('click_' + id) ? parseInt(localStorage.getItem('click_' + id)) : 0;
-            const counter = icon.querySelector('.counter');
-            counter.textContent = `Antall klikk: ${clicks}`;
+            let clicks = localStorage.getItem('click_'+id) ? parseInt(localStorage.getItem('click_'+id)) : 0;
             icon.dataset.clicks = clicks;
+            icon.querySelector('.counter').textContent = clicks;
+
+            icon.addEventListener('click', () => {
+                clicks = parseInt(icon.dataset.clicks) + 1;
+                icon.dataset.clicks = clicks;
+                localStorage.setItem('click_'+id, clicks);
+                icon.querySelector('.counter').textContent = clicks;
+                sortIcons();
+            });
         });
 
-        // Function to sort icons after clicks
-        function sortIcons() {
-            const sorted = icons.sort((a, b) => {
-                return parseInt(b.dataset.clicks) - parseInt(a.dataset.clicks);
+        function sortIcons(){
+            const sorted = icons.sort((a,b) => parseInt(b.dataset.clicks) - parseInt(a.dataset.clicks));
+            sorted.forEach((icon, index) => {
+                container.appendChild(icon);
+                // Gjør topp 3 større
+                if(index === 0) icon.style.height = '200px';
+                else if(index === 1) icon.style.height = '180px';
+                else if(index === 2) icon.style.height = '170px';
+                else icon.style.height = '160px';
             });
-            sorted.forEach(icon => container.appendChild(icon));
         }
 
-        // Add click listeners
-        icons.forEach(icon => {
-            const id = icon.dataset.id;
-            icon.addEventListener('click', () => {
-                let clicks = parseInt(icon.dataset.clicks) + 1;
-                icon.dataset.clicks = clicks;
-                localStorage.setItem('click_' + id, clicks);
-                icon.querySelector('.counter').textContent = `Antall klikk: ${clicks}`;
-                sortIcons(); // resort
-            });
-        });
-
-        // Initial sort on page load
+        // Initial sort
         sortIcons();
     </script>
 </body>
